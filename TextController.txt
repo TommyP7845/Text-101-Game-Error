@@ -1,0 +1,88 @@
+﻿ using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class TextController : MonoBehaviour {
+
+	public Text text;
+	
+	private enum States {Room_1,Room_2,Door_1,Lever_1,Rope_1,Sewer_1,Door_2,Escape}
+	private States myState;
+
+	// Use this for initialization
+	void Start () {
+	
+		myState = States.Room_1;
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+		print (myState);
+		if (myState == States.Room_1) {
+			state_room1();
+		}else if (myState == States.Lever_1) {
+			state_lever_1();
+		}else if (myState == States.Door_1) {
+			state_door_1();
+		}else if (myState == States.Room_2) {
+			state_room_2 ();
+		}
+				
+	}
+	
+	void state_room1() {
+		text.text = "You have woken up. You find yourself in a room all black and dark - you cannot see anything. "
+					+ "You feel a lever on the wall right next to what seems like a wooder door...\n\n" +
+					"Press 1 to pull lever and press 2 to open door.";
+					
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+			myState = States.Lever_1;
+			
+		}else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+			myState = States.Door_1;
+		
+	}
+}
+	
+	void state_lever_1() {
+		text.text = "You have pulled the lever - a secret passage way has opened full with lights but it is "
+					+ "a dead end.\n\n" +
+					"Press Enter to return";
+		
+		if (Input.GetKeyDown(KeyCode.Return)) {
+			myState = States.Room_1;
+		}
+	}
+
+	void state_door_1() {
+		text.text = "So you have opened the door, there is another dark room. Have a look around and see "
+					+ "what you can find.\n\n" +
+					"Press a Key to continue";
+			
+		
+		if (Input.anyKeyDown) {
+			myState = States.Room_2;
+			
+		}
+	}
+
+	void state_room_2() {
+		text.text = "Its so smelly in here. Whoah whats this - it looks like a sewer, oh and there is a "	
+					+ "rope here going up. It looks like it is going to a trap door, i see sunlight peeping "
+					+ "through but the rope does not seem that secure. What about this door here, wonder "
+					+ "where that goes.\n\n"
+					+"Press 1 to go up the rope, 2 to go through the sewers and 3 to go through the door";
+					
+					
+		if (Input.GetKeyDown(KeyCode.Alpha1) { 
+			myState = States.Rope_1;
+			
+		}
+	}
+}		
+		
+		
+		
+		
